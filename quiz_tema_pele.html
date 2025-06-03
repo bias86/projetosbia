@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Avaliação - Dermoconsultor: Pele</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f8f8f8; }
+        .quiz-container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #005baa; }
+        .question { margin-bottom: 20px; }
+        .options label { display: block; margin: 5px 0; }
+        button { padding: 10px 15px; background: #005baa; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Avaliação - Tema: Pele</h1>
+        <form id="quiz-form">
+            <div class="question">
+                <p>1. Qual o tipo de pele que apresenta oleosidade excessiva e poros dilatados?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> a) Pele seca</label>
+                    <label><input type="radio" name="q1" value="b"> b) Pele oleosa ✅</label>
+                    <label><input type="radio" name="q1" value="c"> c) Pele mista</label>
+                    <label><input type="radio" name="q1" value="d"> d) Pele sensível</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>2. Qual desses ativos é mais indicado para controle de oleosidade?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> a) Ácido hialurônico</label>
+                    <label><input type="radio" name="q2" value="b"> b) Vitamina C</label>
+                    <label><input type="radio" name="q2" value="c"> c) Ácido salicílico ✅</label>
+                    <label><input type="radio" name="q2" value="d"> d) Pantenol</label>
+                </div>
+            </div>
+            <!-- Você pode continuar adicionando as demais questões aqui -->
+            <button type="button" onclick="checkAnswers()">Corrigir</button>
+            <div class="result" id="result"></div>
+        </form>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            let score = 0;
+            const answers = {
+                q1: "b",
+                q2: "c"
+            };
+            for (const [question, correctAnswer] of Object.entries(answers)) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                }
+            }
+            const result = document.getElementById("result");
+            result.textContent = `Você acertou ${score} de ${Object.keys(answers).length} questões.`;
+        }
+    </script>
+</body>
+</html>
